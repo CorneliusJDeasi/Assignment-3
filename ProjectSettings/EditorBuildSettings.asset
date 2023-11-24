@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Demo Scene of Emperor Angelfish.unity
+    guid: 5d0a1464028c8974ab07eb7855b365c3
+  - enabled: 1
+    path: Assets/Scenes/Main Menu 1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Main Menu 2.unity
+    guid: e71eace4e8688974497c7eb1eb835cfe
   m_configObjects: {}

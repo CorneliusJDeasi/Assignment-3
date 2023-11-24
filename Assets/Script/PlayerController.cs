@@ -1,29 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] Rigidbody rb;
-    private float mX, mY;
-    // Start is called before the first frame update
-    void Start()
+ // Rigidbody of the player.
+ private Rigidbody rb; 
+
+ // Movement along X and Y axes.
+ private float movementX;
+ private float movementY;
+
+ // Speed at which the player moves.
+ public float speed = 10; 
+
+ // Start is called before the first frame update.
+ void Start()
     {
+ // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
     }
+ 
+ // This function is called when a move input is detected.
+ void OnMove(InputValue movementValue)
+    {
+ // Convert the input value into a Vector2 for movement.
+        Vector2 movementVector = movementValue.Get<Vector2>();
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        Vector3 movement = new Vector3 (mX, 0.0f, mY);
-        rb.AddForce (movement * speed);
+ // Store the X and Y components of the movement.
+        movementX = movementVector.x; 
+        movementY = movementVector.y; 
     }
-    private void onMove(InputValue mValue)
+
+ // FixedUpdate is called once per fixed frame-rate frame.
+ private void FixedUpdate() 
     {
-        Vector2 mVector = mValue.Get<Vector2>();
-        mX = mVector.x;
-        mX = mVector.y;
+ // Create a 3D movement vector using the X and Y inputs.
+        Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
+
+ // Apply force to the Rigidbody to move the player.
+        rb.AddForce(movement * speed); 
     }
 }
